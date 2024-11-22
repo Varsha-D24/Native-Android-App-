@@ -1,0 +1,3 @@
+Use a Bottom Navigation View with fragments.
+Create four fragments: ProfileFragment, ChatFragment, ScoreFragment, CertificateFragment.
+Set up navigation logic in MainActivity.java.
