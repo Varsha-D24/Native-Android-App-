@@ -1,0 +1,35 @@
+Add a button to CertificateFragment to open a new activity for answering a question.
+Win Certificate Logic:
+WinCertificateActivity.java:
+java
+Copy code
+import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.widget.Button;
+import android.widget.EditText;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class WinCertificateActivity extends AppCompatActivity {
+    private EditText answerField;
+    private Button submitButton;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_win_certificate);
+
+        answerField = findViewById(R.id.answerField);
+        submitButton = findViewById(R.id.submitButton);
+
+        new CountDownTimer(30000, 1000) {
+            public void onTick(long millisUntilFinished) {
+                // Update timer UI
+            }
+
+            public void onFinish() {
+                answerField.setEnabled(false);
+                submitButton.setEnabled(true);
+            }
+        }.start();
+    }
+}
