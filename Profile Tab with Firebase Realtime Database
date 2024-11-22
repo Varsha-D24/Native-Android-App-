@@ -1,0 +1,32 @@
+Hardcode data in Firebase Realtime Database:
+json
+Copy code
+{
+    "users": {
+        "1": { "name": "Alice", "age": 25, "premium": true },
+        "2": { "name": "Bob", "age": 30, "premium": false },
+        "3": { "name": "Charlie", "age": 28, "premium": true },
+        "4": { "name": "Diana", "age": 22, "premium": false },
+        "5": { "name": "Eve", "age": 35, "premium": true }
+    }
+}
+Fetch data from Firebase in ProfileFragment:
+java
+Copy code
+DatabaseReference database = FirebaseDatabase.getInstance().getReference("users");
+database.addValueEventListener(new ValueEventListener() {
+    @Override
+    public void onDataChange(@NonNull DataSnapshot snapshot) {
+        for (DataSnapshot userSnapshot : snapshot.getChildren()) {
+            String name = userSnapshot.child("name").getValue(String.class);
+            int age = userSnapshot.child("age").getValue(Integer.class);
+            boolean premium = userSnapshot.child("premium").getValue(Boolean.class);
+            // Display data in the UI
+        }
+    }
+
+    @Override
+    public void onCancelled(@NonNull DatabaseError error) {
+        // Handle errors
+    }
+});
