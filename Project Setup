@@ -1,0 +1,19 @@
+Open Android Studio and create a new project.
+
+Select Empty Activity and use Java as the programming language.
+
+Add the required Firebase dependencies in the build.gradle file:
+
+gradle
+Copy code
+implementation 'com.google.firebase:firebase-auth:21.4.3'
+implementation 'com.google.firebase:firebase-database:20.3.3'
+implementation 'com.google.android.material:material:1.9.0'
+implementation 'com.google.android.gms:play-services-auth:20.6.0'
+Set up Firebase for the project:
+
+Go to the Firebase Console and create a project.
+Register the app by adding the package name from your project.
+Download and add the google-services.json file to your app's /app directory.
+Enable Firebase Authentication for Email/Password and Google.
+Set up Firebase Realtime Database and add sample data for users.
