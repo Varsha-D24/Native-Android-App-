@@ -1,0 +1,69 @@
+UI for Login (XML)
+
+res/layout/activity_login.xml:
+xml
+Copy code
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/editTextPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Phone Number" />
+
+    <Button
+        android:id="@+id/buttonLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login" />
+</LinearLayout>
+Backend Logic for Login
+
+LoginActivity.java:
+java
+Copy code
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import com.google.firebase.auth.FirebaseAuth;
+
+public class LoginActivity extends AppCompatActivity {
+    private FirebaseAuth mAuth;
+    private EditText editTextPhone;
+    private Button buttonLogin;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
+
+        mAuth = FirebaseAuth.getInstance();
+        editTextPhone = findViewById(R.id.editTextPhone);
+        buttonLogin = findViewById(R.id.buttonLogin);
+
+        buttonLogin.setOnClickListener(v -> {
+            String phone = editTextPhone.getText().toString();
+            if (!phone.isEmpty()) {
+                loginWithPhone(phone);
+            } else {
+                Toast.makeText(this, "Enter phone number", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void loginWithPhone(String phone) {
+        // Authentication logic here (e.g., OTP flow)
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+}
